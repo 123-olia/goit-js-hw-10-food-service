@@ -24,9 +24,9 @@ const Theme = {
 document.addEventListener('DOMContentLoaded', getThemeFromLocalStorage);
 
 function getThemeFromLocalStorage() {
-  if (JSON.parse(localStorage.getItem('theme')) === Theme.LIGHT) {
+  if (localStorage.getItem('theme') === Theme.LIGHT) {
     setLightTheme();
-  } else if (JSON.parse(localStorage.getItem('theme')) === Theme.DARK) {
+  } else if (localStorage.getItem('theme') === Theme.DARK) {
     setDarkTheme();
     refs.input.checked = true;
   }
@@ -46,14 +46,12 @@ function setDarkTheme() {
   refs.body.classList.remove(Theme.LIGHT);
   refs.body.classList.add(Theme.DARK);
 
-  localStorage.removeItem('theme', JSON.stringify(Theme.LIGHT));
-  localStorage.setItem('theme', JSON.stringify(Theme.DARK));
+  localStorage.setItem('theme', Theme.DARK);
 }
 
 function setLightTheme() {
   refs.body.classList.remove(Theme.DARK);
   refs.body.classList.add(Theme.LIGHT);
 
-  localStorage.removeItem('theme', JSON.stringify(Theme.DARK));
-  localStorage.setItem('theme', JSON.stringify(Theme.LIGHT));
+  localStorage.setItem('theme', Theme.LIGHT);
 }
